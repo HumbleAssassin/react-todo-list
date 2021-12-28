@@ -6,7 +6,12 @@ import TodoInput from "./components/TodoInput"
 
 export default class App extends Component {
    state = {
-      items: [],
+      items: [
+         {
+            id: 1,
+            title: "Make Breakfast",
+         },
+      ],
       item: "",
       editItem: false,
    }
@@ -36,7 +41,7 @@ export default class App extends Component {
    }
 
    handleDelete = (id) => {
-      console.log(`handle edit ${id}`)
+      console.log(`handle delete ${id}`)
    }
 
    handleEdit = (id) => {
