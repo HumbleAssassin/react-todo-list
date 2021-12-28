@@ -6,13 +6,9 @@ import TodoInput from "./components/TodoInput"
 
 export default class App extends Component {
    state = {
-      items: [
-         {
-            id: 1,
-            title: "Make Breakfast",
-         },
-      ],
+      items: [],
       item: "",
+      id: 0,
       editItem: false,
    }
 
@@ -27,13 +23,14 @@ export default class App extends Component {
       e.preventDefault()
 
       const newItem = {
-         id: this.state.items.length + 1,
+         id: this.state.id !== 0 ? this.state.id : this.state.items.length + 1,
          title: this.state.item,
       }
       const updatedItems = [...this.state.items, newItem]
       this.setState({
          items: updatedItems,
          item: "",
+         id: 0,
       })
    }
 
@@ -51,10 +48,18 @@ export default class App extends Component {
    }
 
    handleEdit = (id) => {
-      console.log(`handle Edit ${id}`)
+      const selectedItem = this.state.items.find((item) => item.id === id)
+      const filteredItems = this.state.items.filter((item) => item.id !== id)
+      this.setState({
+         items: filteredItems,
+         item: selectedItem.title,
+         id: selectedItem.id,
+         editItem: true,
+      })
    }
 
    render() {
+      console.log(this.state.id)
       return (
          <div className="container">
             <div className="row">
@@ -68,6 +73,7 @@ export default class App extends Component {
                   />
                   <TodoList
                      items={this.state.items}
+                     id={this.state.items.id}
                      clearList={this.clearList}
                      handleDelete={this.handleDelete}
                      handleEdit={this.handleEdit}
