@@ -20,19 +20,15 @@ export default class App extends Component {
 
    handleSubmit = (e) => {
       e.preventDefault()
-      console.log(this.state.items.length)
       const newItem = {
          id: this.state.items.length + 1,
          title: this.state.item,
       }
       const updatedItems = [...this.state.items, newItem]
-      this.setState(
-         {
-            items: updatedItems,
-            item: "",
-         },
-         console.log(this.state.items)
-      )
+      this.setState({
+         items: updatedItems,
+         item: "",
+      })
    }
 
    clearList = () => {
@@ -48,7 +44,6 @@ export default class App extends Component {
    }
 
    render() {
-      console.log(this.state)
       return (
          <div className="container">
             <div className="row">
