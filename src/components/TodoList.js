@@ -20,7 +20,7 @@ export default class TodoList extends Component {
             <div className="d-grid"></div>
             <button
                type="button"
-               className="btn btn-danger text-uppercase"
+               className="btn btn-danger text-uppercase my-4"
                onClick={clearList}>
                Clear List
             </button>
