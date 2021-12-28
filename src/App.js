@@ -6,26 +6,33 @@ import TodoInput from "./components/TodoInput"
 
 export default class App extends Component {
    state = {
-      items: [
-         {
-            id: 1,
-            title: "wake up",
-         },
-         {
-            id: 2,
-            title: "make breakfast",
-         },
-      ],
+      items: [],
       item: "",
       editItem: false,
    }
 
    handleChange = (e) => {
-      console.log("handleChange")
+      const { value } = e.target
+      this.setState({
+         item: value,
+      })
    }
 
    handleSubmit = (e) => {
-      console.log("handle submit")
+      e.preventDefault()
+      console.log(this.state.items.length)
+      const newItem = {
+         id: this.state.items.length + 1,
+         title: this.state.item,
+      }
+      const updatedItems = [...this.state.items, newItem]
+      this.setState(
+         {
+            items: updatedItems,
+            item: "",
+         },
+         console.log(this.state.items)
+      )
    }
 
    clearList = () => {
@@ -41,6 +48,7 @@ export default class App extends Component {
    }
 
    render() {
+      console.log(this.state)
       return (
          <div className="container">
             <div className="row">

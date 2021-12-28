@@ -1,7 +1,16 @@
 import React, { Component } from "react"
 
 export default class TodoList extends Component {
+   constructor(props) {
+      super(props)
+   }
    render() {
-      return <div>Hello From Todo List Again and</div>
+      return (
+         <>
+            {this.props.items.forEach((item) => (
+               <h1 key={item.id}>{item.id}</h1>
+            ))}
+         </>
+      )
    }
 }
